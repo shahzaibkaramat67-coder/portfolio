@@ -1,0 +1,77 @@
+
+
+[
+  {
+    "id": "bloghub",
+    "slug": "bloghub",
+    "name": "BlogHub",
+    "image": "/images/projects/BlogHub.jpg",
+    "shortDescription": "A multi-vendor blogging platform with AI-powered content moderation.",
+    "category": "Web Development"
+  },
+  {
+    "id": "multi-agent-system",
+    "slug": "multi-agent-system",
+    "name": "Multi-Agent Orchestration System",
+    "image": "/images/projects/Multi_Agent_Orchestration_System.jpg",
+    "shortDescription": "An AI agent system that coordinates specialized agents to research, plan, and solve tasks.",
+    "category": "Generative AI"
+  },
+  {
+    "id": "chatmind",
+    "slug": "chatmind",
+    "name": "ChatMind",
+    "image": "/images/projects/AI_Chat_Application.jpg",
+    "shortDescription": "A ChatGPT-style AI chat app with authentication and saved conversation history.",
+    "category": "Web Development"
+  },
+  {
+    "id": "lawmemory-bot",
+    "slug": "lawmemory-bot",
+    "name": "LawMemory Bot",
+    "image": "/images/projects/LawMemory_Bot.jpg",
+    "shortDescription": "A terminal chatbot with conversation memory and a legal-assistant persona.",
+    "category": "Generative AI"
+  },
+  {
+    "id": "pdf-chat-v2",
+    "slug": "pdf-chat-v2",
+    "name": "PDF Chat (Chroma RAG v2)",
+    "image": "/images/projects/PDF_Chat_Chroma_RAG_v2.jpg",
+    "shortDescription": "A RAG assistant that answers questions from a PDF using Chroma and Gemini.",
+    "category": "Generative AI"
+  },
+  {
+    "id": "sdk-tool-agent",
+    "slug": "sdk-tool-agent",
+    "name": "SDK Tool-Calling Research Agent",
+    "image": "/images/projects/SDK_Tool_Calling_Research_Agent.jpg",
+    "shortDescription": "A framework-free research agent using native tool calling, memory and web search.",
+    "category": "Generative AI"
+  },
+  {
+    "id": "articleforge",
+    "slug": "articleforge",
+    "name": "ArticleForge",
+    "image": "/images/projects/Multi_Stage_AI_Writing_Pipeline.jpg",
+    "shortDescription": "A multi-stage AI pipeline that outlines, analyzes, writes and edits articles.",
+    "category": "Generative AI"
+  },
+  {
+    "id": "toolmate",
+    "slug": "toolmate",
+    "name": "ToolMate",
+    "image": "/images/projects/ToolMate_LangChain_Tool_Using_Agent.jpg",
+    "shortDescription": "A LangChain agent that answers questions with web search, a page reader and a calculator.",
+    "category": "Generative AI"
+  },
+  {
+    "id": "pdf-chat-v1",
+    "slug": "pdf-chat-v1",
+    "name": "PDF Chat (Chroma RAG v1)",
+    "image": "/images/projects/PDF_Chat_Chroma_RAG_v1.jpg",
+    "shortDescription": "The first RAG version: PDF Q&A using HuggingFace embeddings, Chroma and Gemini.",
+    "category": "Generative AI"
+  }
+]
+

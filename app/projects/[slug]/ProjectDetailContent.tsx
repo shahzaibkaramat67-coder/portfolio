@@ -1,0 +1,624 @@
+
+import MediaLightbox from "@/Components/MediaLightbox";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import {
+    ArrowLeft,
+    ArrowUpRight,
+    ExternalLink,
+    Layers3,
+    Workflow,
+    Code2,
+    ShieldCheck,
+    TrendingUp,
+    Lightbulb,
+    Image as ImageIcon,
+    PlayCircle,
+    ChevronRight,
+    Database,
+    Server,
+    CheckCircle2,
+} from "lucide-react";
+
+import Project_Details from "@/Project_Details.json";
+
+export default async function ProjectDetailContent({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}) {
+    const { slug } = await params;
+
+    const project = Project_Details.find(
+        (item) => item.id === slug
+    );
+
+    if (!project) {
+        notFound();
+    }
+
+    const sectionTitle =
+        "text-2xl font-semibold tracking-tight text-[#F3F4F6] sm:text-3xl";
+
+    const cardStyle =
+        "rounded-2xl border border-white/[0.08] bg-white/[0.025]";
+
+    const screenshots = project.screenshots ?? [];
+
+    const videos = [
+        project.videos?.codeFlow,
+        project.videos?.demo,
+    ].filter(
+        (video): video is NonNullable<typeof video> => Boolean(video?.url)
+    );
+
+    return (
+        <main className="min-h-screen overflow-hidden bg-[#111318] text-[#F3F4F6]">
+            {/* Background */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-500px bg-[radial-gradient(ellipse_at_top,rgba(167,139,250,0.10),transparent_65%)]" />
+
+            {/* Navigation */}
+            <header className="relative z-10 border-b border-white/[0.07]">
+                <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-12">
+                    <Link
+                        href="/#projects"
+                        className="flex items-center gap-2 text-sm text-gray-400 transition hover:text-white"
+                    >
+                        <ArrowLeft size={17} />
+                        Back to Projects
+                    </Link>
+
+                    <span className="text-sm font-semibold tracking-wide">
+                        <span className="text-[#A78BFA]">S.</span> Karamat
+                    </span>
+                </div>
+            </header>
+
+            <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+                {/* Hero */}
+                <section className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16 lg:py-28">
+                    <div>
+                        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A78BFA]/25 bg-[#A78BFA]/8 px-3.5 py-2 text-xs font-medium text-[#C4B5FD]">
+                            <span className="h-1.5 w-1.5 rounded-full bg-[#A78BFA]" />
+                            Project Case Study
+                        </div>
+
+                        <p className="mb-4 text-sm font-medium text-[#A78BFA]">
+                            {project.projectType}
+                        </p>
+
+                        <h1 className="max-w-3xl text-4xl leading-[1.1] font-semibold tracking-tight sm:text-5xl lg:text-7xl">
+                            {project.name}
+                            <span className="text-[#A78BFA]">.</span>
+                        </h1>
+
+                        <p className="mt-7 max-w-2xl text-base leading-8 text-gray-400 sm:text-lg">
+                            {project.description}
+                        </p>
+
+                        <div className="mt-9 flex flex-wrap gap-3">
+                            {project.githubUrl && (
+                                <a
+                                    href={project.githubUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 rounded-lg bg-[#A78BFA] px-5 py-3 text-sm font-semibold text-[#111318] transition hover:bg-violet-300"
+                                >
+                                    <Code2 size={18} />
+                                    View Source Code
+                                    <ArrowUpRight size={16} />
+                                </a>
+                            )}
+
+                            {project.liveUrl && (
+                                <a
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-medium transition hover:border-[#A78BFA] hover:text-[#A78BFA]"
+                                >
+                                    Live Demo
+                                    <ExternalLink size={16} />
+                                </a>
+                            )}
+                        </div>
+
+                        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-gray-500">
+                            <span className="flex items-center gap-2">
+                                <Server size={16} className="text-[#A78BFA]" />
+                                Backend Engineering
+                            </span>
+
+                            <span className="flex items-center gap-2">
+                                <Database size={16} className="text-[#A78BFA]" />
+                                Database Integration
+                            </span>
+
+                            <span className="flex items-center gap-2">
+                                <ShieldCheck size={16} className="text-[#A78BFA]" />
+                                Application Security
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Project cover — uses the first screenshot */}
+                    <div className="relative">
+                        <div className="absolute -inset-3 rounded-3xl border border-[#A78BFA]/20" />
+
+                        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#191B23]">
+                            <div className="flex items-center gap-2 border-b border-white/8 px-4 py-3">
+                                <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+                                <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+                                <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+
+                                <span className="ml-2 text-xs text-gray-500">
+                                    {project.name}
+                                </span>
+                            </div>
+
+                            {screenshots[0]?.image ? (
+                                <MediaLightbox
+                                    type="image"
+                                    src={screenshots[0].image}
+                                    title={screenshots[0].title || project.name}
+                                    alt={screenshots[0].description || project.name}
+                                    className="w-full"
+                                    previewClassName="aspect-[16/10] w-full object-cover object-top transition duration-500 hover:scale-[1.02]"
+                                />
+                            ) : (
+                                <div className="flex aspect-4/3 items-center justify-center">
+                                    <Layers3
+                                        size={64}
+                                        strokeWidth={1}
+                                        className="text-[#A78BFA]"
+                                    />
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="absolute -bottom-5 -left-2 rounded-xl border border-white/10 bg-[#1B1D25] px-4 py-3 shadow-xl sm:-left-6">
+                            <p className="text-xs text-gray-500">
+                                Project Architecture
+                            </p>
+                            <p className="mt-1 text-sm font-medium">
+                                {project.projectType || "Software Engineering"}
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Technology Stack */}
+                <section className={`${cardStyle} p-5 sm:p-7`}>
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                            <p className="text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                                Technology Stack
+                            </p>
+
+                            <h2 className="mt-2 text-xl font-semibold">
+                                Built with the right tools
+                            </h2>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 sm:max-w-2xl sm:justify-end">
+                            {project.technologies.map((technology) => (
+                                <span
+                                    key={technology}
+                                    className="rounded-lg border border-white/10 bg-white/4 px-3 py-2 text-sm text-gray-300"
+                                >
+                                    {technology}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Features */}
+                <section id="features" className="py-20 sm:py-24">
+                    <div className="max-w-2xl">
+                        <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                            What it does
+                        </p>
+
+                        <h2 className={sectionTitle}>Core Features</h2>
+
+                        <p className="mt-4 leading-7 text-gray-400">
+                            Explore the main capabilities and functionality of this
+                            project.
+                        </p>
+                    </div>
+
+                    <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {project.features.map((feature, index) => {
+                            const separator = feature.indexOf(":");
+
+                            const title =
+                                separator >= 0
+                                    ? feature.slice(0, separator).trim()
+                                    : `Feature ${index + 1}`;
+
+                            const description =
+                                separator >= 0
+                                    ? feature.slice(separator + 1).trim()
+                                    : feature;
+
+                            return (
+                                <article
+                                    key={`${index}-${feature}`}
+                                    className={`${cardStyle} group p-5 transition duration-300 hover:-translate-y-1 hover:border-[#A78BFA]/30 hover:bg-white/4 sm:p-6`}
+                                >
+                                    <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl border border-[#A78BFA]/20 bg-[#A78BFA]/10 text-[#A78BFA]">
+                                        {index === 3 ? (
+                                            <ShieldCheck size={20} />
+                                        ) : index === 5 ? (
+                                            <TrendingUp size={20} />
+                                        ) : index === 9 ? (
+                                            <Database size={20} />
+                                        ) : (
+                                            <CheckCircle2 size={20} />
+                                        )}
+                                    </div>
+
+                                    <h3 className="font-semibold leading-6 text-gray-100">
+                                        {title}
+                                    </h3>
+
+                                    <p className="mt-3 text-sm leading-7 text-gray-400">
+                                        {description}
+                                    </p>
+                                </article>
+                            );
+                        })}
+                    </div>
+                </section>
+
+                {/* Backend Workflow */}
+                <section className="border-t border-white/[0.07] py-20 sm:py-24">
+                    <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
+                        <div>
+                            <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                                Under the hood
+                            </p>
+
+                            <h2 className={sectionTitle}>
+                                Backend Workflow
+                            </h2>
+
+                            <p className="mt-5 leading-8 text-gray-400">
+                                Follow the key steps involved in how this project
+                                processes requests and performs its operations.
+                            </p>
+
+                            <div className="mt-7 flex items-center gap-3 text-sm text-gray-400">
+                                <Workflow size={19} className="text-[#A78BFA]" />
+                                Request-to-operation lifecycle
+                            </div>
+                        </div>
+
+                        <div className="space-y-0">
+                            {project.workflow.map((step, index) => (
+                                <div
+                                    key={`${index}-${step}`}
+                                    className="relative flex gap-4 pb-7 last:pb-0"
+                                >
+                                    {index !== project.workflow.length - 1 && (
+                                        <div className="absolute top-10 bottom-0 left-4 w-px bg-white/10" />
+                                    )}
+
+                                    <div className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A78BFA]/30 bg-[#A78BFA]/10 text-xs font-semibold text-[#C4B5FD]">
+                                        {String(index + 1).padStart(2, "0")}
+                                    </div>
+
+                                    <div className={`${cardStyle} flex-1 p-4 sm:p-5`}>
+                                        <p className="text-sm leading-7 text-gray-300">
+                                            {step}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Project Modules */}
+                <section className="border-t border-white/[0.07] py-20 sm:py-24">
+                    <div className="max-w-2xl">
+                        <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                            Code organization
+                        </p>
+
+                        <h2 className={sectionTitle}>Project Modules</h2>
+
+                        <p className="mt-4 leading-7 text-gray-400">
+                            Key files and their responsibilities within the project.
+                        </p>
+                    </div>
+
+                    <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
+                        {project.modules.map((module, index) => (
+                            <div
+                                key={module.file}
+                                className={`grid gap-2 p-4 sm:grid-cols-[minmax(190px,0.75fr)_1.25fr] sm:gap-6 sm:p-5 ${index % 2 === 0
+                                    ? "bg-white/2.5"
+                                    : "bg-transparent"
+                                    } ${index !== 0
+                                        ? "border-t border-white/6"
+                                        : ""
+                                    }`}
+                            >
+                                <div className="flex items-start gap-3">
+                                    <Code2
+                                        size={17}
+                                        className="mt-0.5 shrink-0 text-[#A78BFA]"
+                                    />
+
+                                    <code className="break-all text-sm text-[#C4B5FD]">
+                                        {module.file}
+                                    </code>
+                                </div>
+
+                                <p className="text-sm leading-7 text-gray-400">
+                                    {module.role}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Screenshot Gallery */}
+                <section className="border-t border-white/[0.07] py-20 sm:py-24">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                            <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                                Visual showcase
+                            </p>
+
+                            <h2 className={sectionTitle}>
+                                Screenshots & Architecture
+                            </h2>
+                        </div>
+
+                        <p className="max-w-md text-sm leading-7 text-gray-400">
+                            Click any image to open a larger view for a clearer look.
+                        </p>
+                    </div>
+
+                    {screenshots.length > 0 ? (
+                        <div className="mt-10 grid gap-6 md:grid-cols-2">
+                            {screenshots.map((screenshot) => (
+                                <article
+                                    key={screenshot.id}
+                                    className={`${cardStyle} overflow-hidden`}
+                                >
+                                    <div className="overflow-hidden bg-[#191B23]">
+                                        {screenshot.image ? (
+                                            <MediaLightbox
+                                                type="image"
+                                                src={screenshot.image}
+                                                title={screenshot.title || project.name}
+                                                alt={
+                                                    screenshot.description ||
+                                                    screenshot.title ||
+                                                    project.name
+                                                }
+                                                className="w-full"
+                                                previewClassName="aspect-[16/10] w-full object-cover object-top transition duration-500 hover:scale-[1.02]"
+                                            />
+                                        ) : (
+                                            <div className="flex aspect-16/10 items-center justify-center text-gray-500">
+                                                <ImageIcon size={36} />
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="p-5">
+                                        <div className="flex items-center gap-2">
+                                            <ImageIcon
+                                                size={17}
+                                                className="text-[#A78BFA]"
+                                            />
+
+                                            <h3 className="font-semibold">
+                                                {screenshot.title}
+                                            </h3>
+                                        </div>
+
+                                        <p className="mt-3 text-sm leading-7 text-gray-400">
+                                            {screenshot.description}
+                                        </p>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="mt-8 text-sm text-gray-500">
+                            Screenshots have not been added for this project yet.
+                        </p>
+                    )}
+                </section>
+
+                {/* Project Videos */}
+                <section className="border-t border-white/[0.07] py-20 sm:py-24">
+                    <div className="max-w-2xl">
+                        <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                            Watch it in action
+                        </p>
+
+                        <h2 className={sectionTitle}>
+                            Project Demonstrations
+                        </h2>
+
+                        <p className="mt-4 leading-7 text-gray-400">
+                            Explore the code architecture and recorded project
+                            demonstrations. Open a video for a larger player.
+                        </p>
+                    </div>
+
+                    {videos.length > 0 ? (
+                        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+                            {videos.map((video) => (
+                                <article
+                                    key={video.url}
+                                    className={`${cardStyle} overflow-hidden`}
+                                >
+                                    <div className="bg-[#191B23]">
+                                        <MediaLightbox
+                                            type="video"
+                                            src={video.url}
+                                            title={video.title}
+                                            className="w-full"
+                                            previewClassName="aspect-video w-full bg-[#191B23] object-contain"
+                                        />
+                                    </div>
+
+                                    <div className="p-5 sm:p-6">
+                                        <div className="flex items-center gap-2">
+                                            <PlayCircle
+                                                size={19}
+                                                className="text-[#A78BFA]"
+                                            />
+
+                                            <h3 className="font-semibold">
+                                                {video.title}
+                                            </h3>
+                                        </div>
+
+                                        <p className="mt-3 text-sm leading-7 text-gray-400">
+                                            {video.description}
+                                        </p>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="mt-8 text-sm text-gray-500">
+                            Videos have not been added for this project yet.
+                        </p>
+                    )}
+                </section>
+
+                {/* Challenges and Improvements */}
+                <section className="border-t border-white/[0.07] py-20 sm:py-24">
+                    <div className="grid gap-12 lg:grid-cols-2">
+                        <div>
+                            <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                                Engineering decisions
+                            </p>
+
+                            <h2 className={sectionTitle}>
+                                Technical Challenges
+                            </h2>
+
+                            <div className="mt-8 space-y-4">
+                                {project.challenges.map((challenge) => (
+                                    <div key={challenge} className="flex gap-3">
+                                        <ChevronRight
+                                            size={19}
+                                            className="mt-1 shrink-0 text-[#A78BFA]"
+                                        />
+
+                                        <p className="text-sm leading-7 text-gray-400">
+                                            {challenge}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div>
+                            <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                                What comes next
+                            </p>
+
+                            <h2 className={sectionTitle}>
+                                Future Improvements
+                            </h2>
+
+                            <div className="mt-8 space-y-4">
+                                {project.futureImprovements.map((improvement) => (
+                                    <div
+                                        key={improvement}
+                                        className="flex gap-3"
+                                    >
+                                        <Lightbulb
+                                            size={19}
+                                            className="mt-1 shrink-0 text-[#A78BFA]"
+                                        />
+
+                                        <p className="text-sm leading-7 text-gray-400">
+                                            {improvement}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Final CTA */}
+                <section className="pb-20 sm:pb-28">
+                    <div className="relative overflow-hidden rounded-3xl border border-[#A78BFA]/20 bg-linear-to-br from-[#A78BFA]/10 via-[#191B23] to-[#191B23] p-7 sm:p-12 lg:p-16">
+                        <div className="relative z-10 max-w-2xl">
+                            <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#A78BFA] uppercase">
+                                Explore the implementation
+                            </p>
+
+                            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                                Interested in how it works?
+                            </h2>
+
+                            <p className="mt-5 leading-8 text-gray-400">
+                                Explore the source code to learn more about the
+                                application structure, backend logic, and
+                                implementation.
+                            </p>
+
+                            <div className="mt-8 flex flex-wrap gap-3">
+                                {project.githubUrl && (
+                                    <a
+                                        href={project.githubUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 rounded-lg bg-[#A78BFA] px-5 py-3 text-sm font-semibold text-[#111318] transition hover:bg-violet-300"
+                                    >
+                                        <Code2 size={18} />
+                                        Explore on GitHub
+                                        <ArrowUpRight size={16} />
+                                    </a>
+                                )}
+
+                                <Link
+                                    href="/#projects"
+                                    className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-medium transition hover:border-[#A78BFA] hover:text-[#A78BFA]"
+                                >
+                                    <ArrowLeft size={16} />
+                                    All Projects
+                                </Link>
+                            </div>
+                        </div>
+
+                        <Layers3
+                            size={180}
+                            strokeWidth={0.6}
+                            className="absolute -right-8 -bottom-12 hidden text-[#A78BFA]/10 sm:block"
+                        />
+                    </div>
+                </section>
+            </div>
+
+            {/* Footer */}
+            <footer className="border-t border-white/[0.07]">
+                <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-7 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
+                    <p>© 2026 Shahzaib Karamat</p>
+
+                    <Link
+                        href="/#projects"
+                        className="transition hover:text-[#A78BFA]"
+                    >
+                        Explore more projects
+                    </Link>
+                </div>
+            </footer>
+        </main>
+    );
+}

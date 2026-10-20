@@ -1,0 +1,886 @@
+[
+  {
+    "id": "bloghub",
+    "name": "BlogHub",
+    "projectType": "Full-stack web application (monetized multi-vendor blogging platform)",
+    "description": "BlogHub is a multi-vendor blogging platform where creators sign up, publish articles, and earn money from the engagement their content receives, while administrators manage users, categories, earning rules and payouts. Visitors can read articles and interact through likes, comments, shares and views. The backend is an Express application that mounts separate route groups for normal users and for admins, with JWT-based authentication protecting private routes. Content, engagement and money data are stored in MongoDB collections, and an AI-assisted moderation step reviews submitted articles before they reach readers. The project demonstrates how a real content business is structured: publishing, engagement tracking, creator earnings, withdrawals and administration all connected in one system.",
+    "features": [
+      "User authentication: signup and login with JWT tokens, plus authentication middleware that checks the user on every protected route.",
+      "Author profiles: each creator has a profile record that is read and updated separately from the account record.",
+      "Article creation and management: creators write articles under categories, edit them, and manage published and draft posts from a dashboard.",
+      "AI-powered content moderation: submitted articles are reviewed by an AI step before being accepted.",
+      "Engagement tracking: separate models store likes, comments, shares and views for every article.",
+      "Creator earnings: earnings are computed from views using RPM groups, and a creator dashboard shows them.",
+      "Withdrawal requests: creators request payouts, which are saved as withdrawal records for admin review.",
+      "Admin analytics: counts of articles, likes, comments, shares and aggregated views.",
+      "Admin controls: user administration, category and RPM group setup, and earnings administration.",
+      "Database-backed content storage with MongoDB."
+    ],
+    "technologies": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "EJS",
+      "JWT Authentication",
+      "Mongoose"
+    ],
+    "workflow": [
+      "A visitor or administrator sends a request to the Express app in index.js.",
+      "The app mounts user routes (user.routes.js) and admin routes (host.routes.js).",
+      "Authentication middleware verifies the JWT and loads the user record before protected routes run.",
+      "Publishing routes load categories, create articles in the article model and list articles for readers.",
+      "When readers open an article, the view controller records a view, and likes, comments and shares are saved to their own models.",
+      "The creator dashboard reads articles, views, comments and shares and calculates earnings from RPM rules.",
+      "Creators submit withdrawal requests, which are stored and shown to the admin.",
+      "The admin dashboard aggregates all engagement data and manages users, categories, RPM groups and payouts."
+    ],
+    "modules": [
+      {
+        "file": "index.js",
+        "role": "Express entry point that receives all requests and mounts user and admin routes."
+      },
+      {
+        "file": "user.routes.js",
+        "role": "Routes for authentication, profiles, publishing, dashboard and withdrawals."
+      },
+      {
+        "file": "host.routes.js",
+        "role": "Admin routes for analytics, users, setup, operations and earnings."
+      },
+      {
+        "file": "user.controller.js",
+        "role": "Account creation, login and user administration logic."
+      },
+      {
+        "file": "auth.middleware.js",
+        "role": "JWT verification that protects private routes."
+      },
+      {
+        "file": "Signup.model.js / profile.model.js",
+        "role": "User accounts and author profile data."
+      },
+      {
+        "file": "ArticalModel.js / categorie.model.js",
+        "role": "Articles and their categories."
+      },
+      {
+        "file": "like.Model.js / comment.model.js / share.Model.js / view.Model.js",
+        "role": "Engagement records used for analytics and earnings."
+      },
+      {
+        "file": "view.Controller.js",
+        "role": "Records views when an article is opened."
+      },
+      {
+        "file": "RPMGroup.model.js",
+        "role": "Revenue-per-thousand-views rules used to calculate earnings."
+      },
+      {
+        "file": "withdraw.Model.js",
+        "role": "Stores creator payout requests."
+      },
+      {
+        "file": "article.js / Singup.js / blog-content.js / Dashbord.js",
+        "role": "Front-end pages for the creator dashboard, signup, blog reading and admin dashboard."
+      }
+    ],
+    "challenges": [
+      "Modelling engagement so views, likes, comments and shares can be aggregated quickly for analytics.",
+      "Keeping creator earnings accurate when RPM rules change per category or group.",
+      "Protecting admin and creator routes so each role can only reach its own data."
+    ],
+    "futureImprovements": [
+      "Add payment gateway integration for real payouts.",
+      "Add full-text search and tag filtering.",
+      "Add email notifications for approvals and withdrawals.",
+      "Cache analytics queries to speed up the admin dashboard."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/blog-website",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/bloghub-flow.mp4",
+        "description": "Explains the backend architecture, request lifecycle, routes, controllers, and database interactions."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/bloghub-demo.mp4",
+        "description": "Demonstrates the website's features and the user journey."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "dashboard",
+        "image": "/card_details/BlogSite/user.jpg",
+        "image2": "/card_details/BlogSite/HeroImage.jpg",
+        "title": "Dashboard",
+        "description": "The main dashboard for managing published and draft articles."
+      },
+      {
+        "id": "architecture",
+        "image": "/card_details/BlogSite/Blog_Diagram.png",
+        "title": "Backend Architecture",
+        "description": "A visual overview of the backend components and their interactions."
+      }
+    ]
+  },
+  {
+    "id": "multi-agent-system",
+    "name": "Multi-Agent Orchestration System",
+    "projectType": "Autonomous deep-research agent (plan, execute, evaluate loop)",
+    "description": "The Multi-Agent Orchestration System is a command-line research assistant in which several specialized components cooperate to answer hard questions. Instead of asking a language model once, the system runs a loop. An action planner decides what to do next, a tool executor performs web searches and reads pages, a sufficiency evaluator judges whether enough evidence has been gathered, and a final-answer component writes the result. A shared pipeline state object carries the question, gathered results and decisions between stages, and every model call goes through one LLM client with a JSON parser to turn replies into structured data.",
+    "features": [
+      "Action planner that reads shared state and chooses the next research step.",
+      "Tool executor that dispatches Tavily web searches and page-research calls.",
+      "Sufficiency evaluator that decides when the evidence is good enough to stop.",
+      "Final-answer stage that formats the approved result for the user.",
+      "Shared pipeline state updated by every stage of the loop.",
+      "JSON parser that converts model replies into structured decisions.",
+      "In-memory buffer for short-term memory.",
+      "Single LLM client wrapping the chat model API.",
+      "Simple CLI entry point (main.py)."
+    ],
+    "technologies": [
+      "Python",
+      "LangChain",
+      "Tavily Search API",
+      "LLM Chat API",
+      "JSON Parsing"
+    ],
+    "workflow": [
+      "The user submits a request in the CLI (main.py), which creates the pipeline state and starts the workflow.",
+      "The research loop asks the planner for the next action based on the current state.",
+      "The planner calls the LLM client and parses the JSON reply into an action.",
+      "The executor runs the action: Tavily web search, or fetching and reading web pages.",
+      "Results are written into the pipeline state.",
+      "The evaluator asks the LLM whether the evidence is sufficient and parses the verdict.",
+      "If insufficient, the loop returns to planning; if sufficient, the final-answer module formats the response.",
+      "The answer is printed to the user."
+    ],
+    "modules": [
+      {
+        "file": "main.py",
+        "role": "CLI entry point that accepts the request, creates state and starts the workflow."
+      },
+      {
+        "file": "pipliner.py",
+        "role": "Research loop that coordinates planning, execution, evaluation and final answer."
+      },
+      {
+        "file": "planner.py",
+        "role": "Action planner that reads state and requests the next step from the LLM."
+      },
+      {
+        "file": "executer.py",
+        "role": "Tool executor that dispatches searches and page research."
+      },
+      {
+        "file": "evaluate.py",
+        "role": "Sufficiency evaluator that decides whether to stop or continue."
+      },
+      {
+        "file": "final_answer.py",
+        "role": "Formats the approved result into the final response."
+      },
+      {
+        "file": "state.py",
+        "role": "Pipeline state shared by all stages."
+      },
+      {
+        "file": "tools.py",
+        "role": "Web search (Tavily) and page research tools."
+      },
+      {
+        "file": "agent.py",
+        "role": "LLM client that sends chat requests to the model API."
+      },
+      {
+        "file": "memory.py",
+        "role": "In-memory buffer for short-term context."
+      }
+    ],
+    "challenges": [
+      "Preventing the loop from running forever when evidence is never judged sufficient.",
+      "Getting the LLM to return strictly parseable JSON for planning and evaluation.",
+      "Keeping shared state small enough to fit within the model context."
+    ],
+    "futureImprovements": [
+      "Add a maximum iteration and cost limit.",
+      "Add source citations to the final answer.",
+      "Run searches in parallel.",
+      "Persist state to disk so research can resume."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/langchain_pipliner_agent",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/multi-agent-system-flow.mp4",
+        "description": "Walks through the research loop, the planner and evaluator prompts, and how state moves between stages."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/multi-agent-system-demo.mp4",
+        "description": "Shows the agent researching a question end to end from the command line."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "workflow",
+        "image": "/images/projects/multi-agent/workflow.png",
+        "title": "Research Workflow",
+        "description": "The loop of planning, executing, evaluating and answering."
+      },
+      {
+        "id": "architecture",
+        "image": "/images/projects/multi-agent/architecture.png",
+        "title": "System Architecture",
+        "description": "How the loop, tools, state and LLM client connect."
+      }
+    ]
+  },
+  {
+    "id": "chatmind",
+    "name": "ChatMind",
+    "projectType": "Full-stack AI chat application (ChatGPT-style)",
+    "description": "ChatMind is a ChatGPT-style web application where signed-in users hold conversations with an AI assistant and keep their history. The interface is a Next.js home screen composed of a sidebar with history, new chat, search, projects, share popup, profile menu, a more-options menu, a message display area and a message input. Behind it, API routes handle chat, saving the assistant's reply, history queries, signup, login, token refresh and token verification. Users, chats and messages are stored in a database, signup sends a welcome email, and an AI helper module generates the replies.",
+    "features": [
+      "Secure signup and login with generated access and refresh tokens.",
+      "Token refresh API so sessions continue without logging in again.",
+      "Welcome email on signup through a mail helper.",
+      "Chat API that stores the user message, requests an AI reply and persists it.",
+      "Persistent chat history shown in the sidebar and a history view.",
+      "Search through conversations.",
+      "Projects view for organizing chats.",
+      "Share popup, profile view and more-options menu.",
+      "Message display and message input components.",
+      "Shared database connector for users, chats and messages."
+    ],
+    "technologies": [
+      "Next.js",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "JWT",
+      "Nodemailer",
+      "AI Chat API"
+    ],
+    "workflow": [
+      "The user opens the Next.js home screen (page.tsx), which renders the sidebar, search, projects, profile, message display and message input.",
+      "On signup, the Signup API creates the user record and sends an email through the mail helper.",
+      "On login, the Login API checks the user and generates tokens; the Token refresh API issues new ones later.",
+      "When the user sends a prompt, the Chat API verifies the token through the verification module.",
+      "The Chat API reads or creates the chat, stores the user message and asks the AI helper for a reply.",
+      "The assistant reply is submitted to the Save assistant reply route and stored in message records.",
+      "The sidebar and history view call the History API, which queries stored chats."
+    ],
+    "modules": [
+      {
+        "file": "page.tsx / page.jsx",
+        "role": "Home screen plus message display and message input."
+      },
+      {
+        "file": "sidebar.jsx / history.jsx / search.jsx",
+        "role": "Navigation, history list and search."
+      },
+      {
+        "file": "newChat.jsx / project.jsx / popup.jsx / profile.jsx / threedot.jsx",
+        "role": "New chat, projects, share popup, profile and more menu."
+      },
+      {
+        "file": "Chat API route.js",
+        "role": "Receives prompts, verifies users, stores messages and requests replies."
+      },
+      {
+        "file": "Ai.js",
+        "role": "AI helper that produces assistant replies."
+      },
+      {
+        "file": "Save assistant reply route.js / History API route.js",
+        "role": "Persist replies and query history."
+      },
+      {
+        "file": "Login / Signup / Token refresh route.js",
+        "role": "Account creation, sign-in and session renewal."
+      },
+      {
+        "file": "verify.js / auth.js / mail.js",
+        "role": "Token verification, token generation and signup email."
+      },
+      {
+        "file": "db.js",
+        "role": "Database connector."
+      },
+      {
+        "file": "User.js / Chat.js / massage.js",
+        "role": "User, chat and message data models."
+      }
+    ],
+    "challenges": [
+      "Keeping sessions secure while avoiding repeated logins, which needed access and refresh tokens.",
+      "Storing user and assistant messages consistently within the right chat.",
+      "Rendering long histories quickly in the sidebar."
+    ],
+    "futureImprovements": [
+      "Stream AI replies token by token.",
+      "Add file and image uploads.",
+      "Add real shareable conversation links.",
+      "Add rate limiting and usage quotas."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/chat_app",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/chatmind-flow.mp4",
+        "description": "Explains how the UI calls the chat API, how tokens are verified, and how messages are persisted."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/chatmind-demo.mp4",
+        "description": "Demonstrates signup, starting a chat, searching history and sharing."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "chat-interface",
+        "image": "/images/projects/chatmind/chat-interface.png",
+        "title": "Chat Interface",
+        "description": "The main conversation screen with sidebar and message input."
+      },
+      {
+        "id": "architecture",
+        "image": "/images/projects/chatmind/architecture.png",
+        "title": "System Architecture",
+        "description": "Components from UI to APIs, authentication and persistence."
+      }
+    ]
+  },
+  {
+    "id": "lawmemory-bot",
+    "name": "LawMemory Bot",
+    "projectType": "Conversational chatbot with in-session memory",
+    "description": "LawMemory Bot is a small terminal chatbot built on the Gemini model that remembers the whole conversation. A system prompt, defined in its own file, sets the assistant's role, which the repository name suggests is a legal-information assistant. That prompt seeds a message history; every question and answer is appended to it, and the complete history is sent to the model on each turn so follow-up questions make sense.",
+    "features": [
+      "System prompt that defines the assistant's role and behavior.",
+      "Message history seeded with the system prompt.",
+      "Every turn appended so context is preserved.",
+      "Gemini model configured in a separate setup file.",
+      "Interactive terminal chat loop."
+    ],
+    "technologies": [
+      "Python",
+      "Google Gemini",
+      "LangChain"
+    ],
+    "workflow": [
+      "The user starts the program and enters a question.",
+      "The chat loop builds the system prompt from memorySystem.py.",
+      "The prompt seeds the message history.",
+      "The loop gets the Gemini model from the model setup file.",
+      "The user message is appended and the model is invoked with the full history.",
+      "The reply is returned, appended to history and printed, ready for the next question."
+    ],
+    "modules": [
+      {
+        "file": "agent.py",
+        "role": "Chat loop and message history."
+      },
+      {
+        "file": "memorySystem.py",
+        "role": "System prompt that seeds the history."
+      },
+      {
+        "file": "mian.py",
+        "role": "Model setup that configures Gemini."
+      }
+    ],
+    "challenges": [
+      "History grows with every turn and can exceed the model's context limit.",
+      "The assistant must not present answers as professional legal advice."
+    ],
+    "futureImprovements": [
+      "Trim or summarize old messages.",
+      "Persist history to disk between sessions.",
+      "Add disclaimers and jurisdiction selection."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/law_memory_agent",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/lawmemory-bot-flow.mp4",
+        "description": "Shows how the system prompt seeds history and how each turn is appended and sent to the model."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/lawmemory-bot-demo.mp4",
+        "description": "Demonstrates follow-up questions answered using remembered context."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "terminal-chat",
+        "image": "/images/projects/lawmemory-bot/terminal-chat.png",
+        "title": "Terminal Chat",
+        "description": "A multi-turn conversation showing context being remembered."
+      },
+      {
+        "id": "architecture",
+        "image": "/images/projects/lawmemory-bot/architecture.png",
+        "title": "System Architecture",
+        "description": "The chat loop, memory and model setup."
+      }
+    ]
+  },
+  {
+    "id": "pdf-chat-v2",
+    "name": "PDF Chat (Chroma RAG v2)",
+    "projectType": "Retrieval-Augmented Generation (RAG) system",
+    "description": "PDF Chat v2 lets a user ask questions about a PDF and receive answers grounded in its content. It has two parts. An indexing script loads the PDF, splits it into chunks, embeds them and persists the vectors into a Chroma index. An interactive assistant takes a question, embeds it, retrieves the most relevant passages from Chroma, builds a context prompt and asks Google Gemini to answer using that context.",
+    "features": [
+      "PDF page loading.",
+      "Text splitting into overlapping chunks.",
+      "Embedding and persistent Chroma vector storage.",
+      "Query embedding and passage retrieval.",
+      "Context prompt that combines question and passages.",
+      "Gemini answers grounded in the retrieved text.",
+      "Interactive command-line assistant."
+    ],
+    "technologies": [
+      "Python",
+      "Chroma",
+      "Google Gemini",
+      "LangChain",
+      "Vector Embeddings"
+    ],
+    "workflow": [
+      "createDB.py loads the source PDF pages.",
+      "The pages are split into chunks.",
+      "The chunks are embedded and the vectors persisted to the Chroma index.",
+      "The user asks a question in main.py.",
+      "The question is embedded and Chroma is searched for similar passages.",
+      "A context prompt is built from the question and passages.",
+      "Gemini is invoked and the response is printed."
+    ],
+    "modules": [
+      {
+        "file": "createDB.py",
+        "role": "PDF indexing: load, split, embed and persist."
+      },
+      {
+        "file": "main.py",
+        "role": "Interactive assistant, retrieval, prompt building and Gemini call."
+      }
+    ],
+    "challenges": [
+      "Choosing chunk sizes that keep meaning without wasting context.",
+      "Ensuring answers come only from retrieved passages."
+    ],
+    "futureImprovements": [
+      "Support multiple PDFs and other file types.",
+      "Show source page numbers.",
+      "Add a web interface."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/rag_chroma_agent_v2",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/pdf-chat-v2-flow.mp4",
+        "description": "Explains indexing versus querying, and how retrieved passages build the context prompt."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/pdf-chat-v2-demo.mp4",
+        "description": "Demonstrates asking questions about a PDF and getting grounded answers."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "indexing",
+        "image": "/images/projects/pdf-chat-v2/indexing.png",
+        "title": "Document Indexing",
+        "description": "The PDF to chunks to vectors pipeline."
+      },
+      {
+        "id": "architecture",
+        "image": "/images/projects/pdf-chat-v2/architecture.png",
+        "title": "RAG Architecture",
+        "description": "Indexing and question-answering paths around Chroma."
+      }
+    ]
+  },
+  {
+    "id": "sdk-tool-agent",
+    "name": "SDK Tool-Calling Research Agent",
+    "projectType": "Framework-free tool-calling AI agent",
+    "description": "This project is a research agent written directly against an OpenAI-compatible SDK, without an agent framework. It implements its own agent loop, tool registry, tool schemas and conversation memory, which exposes how native function calling works. The agent can search the web with DuckDuckGo and fetch and extract text from source pages.",
+    "features": [
+      "Hand-built agent loop with native tool calling.",
+      "Tool registry and schema module.",
+      "DuckDuckGo web search tool.",
+      "Source research tool with page extraction.",
+      "Conversation memory used by every component.",
+      "OpenAI-compatible model client.",
+      "CLI launcher and conversation loop."
+    ],
+    "technologies": [
+      "Python",
+      "OpenAI-compatible SDK",
+      "DuckDuckGo Search",
+      "Web Scraping"
+    ],
+    "workflow": [
+      "main.py starts the conversation loop in enterpoint.py.",
+      "The user's question is recorded in conversation memory.",
+      "The loop calls run_Agent.py.",
+      "The model client reads history and gets tool definitions from too_schema.py and TOOL_REGISTRY.py.",
+      "The completion request goes to the OpenAI-compatible API.",
+      "If a tool is requested, search or source research runs and results are written to memory.",
+      "The loop repeats until the model returns a final answer."
+    ],
+    "modules": [
+      {
+        "file": "main.py",
+        "role": "CLI launcher."
+      },
+      {
+        "file": "enterpoint.py",
+        "role": "Conversation loop that records messages and calls the agent."
+      },
+      {
+        "file": "run_Agent.py",
+        "role": "Agent loop that requests completions and dispatches tools."
+      },
+      {
+        "file": "model.py",
+        "role": "Model client for the API."
+      },
+      {
+        "file": "memory.py",
+        "role": "Conversation memory."
+      },
+      {
+        "file": "Tools.py",
+        "role": "Web search, source research and page extraction."
+      },
+      {
+        "file": "too_schema.py / TOOL_REGISTRY.py",
+        "role": "Tool schema access and definitions."
+      }
+    ],
+    "challenges": [
+      "Keeping tool schemas and tool functions in sync.",
+      "Handling malformed tool arguments from the model.",
+      "Limiting extracted page text to protect the context window."
+    ],
+    "futureImprovements": [
+      "Add retries and error handling for tool failures.",
+      "Add more tools.",
+      "Stream responses."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/sdk_correction_agent",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/sdk-tool-agent-flow.mp4",
+        "description": "Explains tool schemas, the agent loop and how tool results are written to memory."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/sdk-tool-agent-demo.mp4",
+        "description": "Demonstrates the agent searching and reading sources to answer a question."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "agent-run",
+        "image": "/images/projects/sdk-tool-agent/agent-run.png",
+        "title": "Agent Run",
+        "description": "The agent choosing tools and answering a question."
+      },
+      {
+        "id": "architecture",
+        "image": "/images/projects/sdk-tool-agent/architecture.png",
+        "title": "Agent Architecture",
+        "description": "Loop, memory, tools and model client relationships."
+      }
+    ]
+  },
+  {
+    "id": "articleforge",
+    "name": "ArticleForge",
+    "projectType": "Multi-stage LLM content pipeline (prompt chaining)",
+    "description": "ArticleForge turns a single topic into a finished article through four stages that each do one job. An outline creator structures the piece, a content analyzer checks drafts, an article writer produces the text and an article editor polishes it. Each stage builds its prompt from a shared prompt-template module and sends it through one LLM client to a configured API.",
+    "features": [
+      "Interactive CLI that accepts a topic.",
+      "Outline creator.",
+      "Content analyzer that checks drafts.",
+      "Article writer.",
+      "Article editor for final polish.",
+      "Shared prompt templates.",
+      "JSON helper for structured outputs.",
+      "Single LLM client."
+    ],
+    "technologies": [
+      "Python",
+      "LLM API",
+      "Prompt Engineering",
+      "JSON"
+    ],
+    "workflow": [
+      "The user enters a topic in main.py.",
+      "main.py runs the pipeline in pipeline.py.",
+      "The outliner creates the outline.",
+      "The analyzer checks drafts.",
+      "The writer produces the article.",
+      "The editor refines it.",
+      "Each stage builds its prompt, requests a completion and passes output forward.",
+      "The final article is returned and printed."
+    ],
+    "modules": [
+      {
+        "file": "main.py",
+        "role": "Interactive CLI."
+      },
+      {
+        "file": "pipeline.py",
+        "role": "Runs the four stages in order."
+      },
+      {
+        "file": "outliner.py",
+        "role": "Creates the outline."
+      },
+      {
+        "file": "analyzer.py",
+        "role": "Checks drafts."
+      },
+      {
+        "file": "writter.py",
+        "role": "Writes the article."
+      },
+      {
+        "file": "editer.py",
+        "role": "Edits the article."
+      },
+      {
+        "file": "Filnal_prompt.py",
+        "role": "Prompt templates."
+      },
+      {
+        "file": "model.py",
+        "role": "LLM client."
+      },
+      {
+        "file": "json_hendler.py",
+        "role": "JSON helper."
+      }
+    ],
+    "challenges": [
+      "Keeping a consistent tone across separately prompted stages.",
+      "Avoiding the analyzer and editor changing the intended meaning."
+    ],
+    "futureImprovements": [
+      "Add an optional revision loop.",
+      "Add research for factual accuracy.",
+      "Export to Markdown or HTML."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/topic_pipeline_agent",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/articleforge-flow.mp4",
+        "description": "Shows how each stage builds its prompt, calls the model and passes output forward."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/articleforge-demo.mp4",
+        "description": "Demonstrates entering a topic and receiving a polished article."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "final-article",
+        "image": "/images/projects/articleforge/final-article.png",
+        "title": "Final Article Output",
+        "description": "A finished article printed in the terminal."
+      },
+      {
+        "id": "architecture",
+        "image": "/images/projects/articleforge/architecture.png",
+        "title": "Pipeline Architecture",
+        "description": "The four stages and shared prompt and model layers."
+      }
+    ]
+  },
+  {
+    "id": "toolmate",
+    "name": "ToolMate",
+    "projectType": "LangChain tool-using question-answering agent",
+    "description": "ToolMate is a question-answering agent that decides when to use tools. It has three: a DuckDuckGo web search tool, a webpage reader and a calculator. A model factory configures a chat model that calls OpenRouter, the agent streams the completion to the user, and an answer formatter prepares the final output.",
+    "features": [
+      "Web search with DuckDuckGo.",
+      "Webpage reader for result pages.",
+      "Calculator tool.",
+      "Model factory for OpenRouter.",
+      "Streaming completions.",
+      "Answer formatter."
+    ],
+    "technologies": [
+      "Python",
+      "LangChain",
+      "OpenRouter API",
+      "DuckDuckGo Search"
+    ],
+    "workflow": [
+      "The user submits a question.",
+      "The agent registers the research tools and calculator.",
+      "The model factory creates and configures the chat client.",
+      "The model decides to search, read a page or calculate.",
+      "The search tool queries DuckDuckGo and can pass pages to the reader.",
+      "The completion is streamed and formatted.",
+      "The answer is printed."
+    ],
+    "modules": [
+      {
+        "file": "agent.py",
+        "role": "Question agent, tool registration and answer formatter."
+      },
+      {
+        "file": "research_tool.py",
+        "role": "Web search tool."
+      },
+      {
+        "file": "web_reader.py",
+        "role": "Fetches and reads webpages."
+      },
+      {
+        "file": "calculator.py",
+        "role": "Calculator tool."
+      },
+      {
+        "file": "model.py",
+        "role": "Model factory and chat client for OpenRouter."
+      }
+    ],
+    "challenges": [
+      "Teaching the model when a tool is needed.",
+      "Handling pages that fail or return too much text."
+    ],
+    "futureImprovements": [
+      "Add memory across questions.",
+      "Add more tools such as weather or file search.",
+      "Add a web UI."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/langchain_tool_agent",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/toolmate-flow.mp4",
+        "description": "Explains tool registration, model creation and the streaming answer path."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/toolmate-demo.mp4",
+        "description": "Demonstrates questions needing search and calculation."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "streaming-answer",
+        "image": "/images/projects/toolmate/streaming-answer.png",
+        "title": "Streaming Answer",
+        "description": "The agent streaming a tool-assisted answer."
+      },
+      {
+        "id": "architecture",
+        "image": "/images/projects/toolmate/architecture.png",
+        "title": "Agent Architecture",
+        "description": "Tools, agent and model integration."
+      }
+    ]
+  },
+  {
+    "id": "pdf-chat-v1",
+    "name": "PDF Chat (Chroma RAG v1)",
+    "projectType": "Retrieval-Augmented Generation (RAG) system (first version)",
+    "description": "PDF Chat v1 is the first version of the PDF question-answering system. It uses HuggingFace embeddings to index a PDF in Chroma and a terminal loop that retrieves similar chunks and streams a Gemini answer.",
+    "features": [
+      "PDF extraction.",
+      "Text chunking.",
+      "HuggingFace embeddings.",
+      "Chroma knowledge store.",
+      "Similarity retrieval.",
+      "Context prompt.",
+      "Streaming Gemini answers."
+    ],
+    "technologies": [
+      "Python",
+      "Chroma",
+      "HuggingFace Embeddings",
+      "Google Gemini",
+      "LangChain"
+    ],
+    "workflow": [
+      "system_setup.py loads the source PDF.",
+      "Text is extracted and split into chunks.",
+      "Chunks are embedded with HuggingFace and indexed in Chroma.",
+      "The user asks a question in User_input.py.",
+      "The retriever searches Chroma and returns documents.",
+      "The context prompt is filled with them.",
+      "The prompt is streamed to Gemini and the answer is printed."
+    ],
+    "modules": [
+      {
+        "file": "system_setup.py",
+        "role": "Index setup: extraction, chunking, embeddings and indexing."
+      },
+      {
+        "file": "User_input.py",
+        "role": "Question loop, similarity retrieval, context prompt and Gemini generation."
+      }
+    ],
+    "challenges": [
+      "Embedding quality affects retrieval accuracy.",
+      "Large PDFs take time to index."
+    ],
+    "futureImprovements": [
+      "Upgrade to v2 features.",
+      "Add re-ranking.",
+      "Add citations."
+    ],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/rag_chroma_agent",
+    "liveUrl": null,
+    "videos": {
+      "codeFlow": {
+        "title": "Code Architecture and Execution Flow",
+        "url": "/videos/code-flow/pdf-chat-v1-flow.mp4",
+        "description": "Explains the indexing script and how similarity retrieval fills the context prompt."
+      },
+      "demo": {
+        "title": "Complete Project Demo",
+        "url": "/videos/project-demos/pdf-chat-v1-demo.mp4",
+        "description": "Demonstrates indexing a PDF and querying it."
+      }
+    },
+    "screenshots": [
+      {
+        "id": "question-loop",
+        "image": "/images/projects/pdf-chat-v1/question-loop.png",
+        "title": "Question Loop",
+        "description": "Asking questions and receiving streamed answers."
+      },
+      {
+        "id": "architecture",
+        "image": "/images/projects/pdf-chat-v1/architecture.png",
+        "title": "RAG Architecture",
+        "description": "Indexing and retrieval around the Chroma store."
+      }
+    ]
+  }
+]
