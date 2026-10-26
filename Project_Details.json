@@ -96,16 +96,16 @@
       "Cache analytics queries to speed up the admin dashboard."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/blog-website",
-    "liveUrl": null,
+    "liveUrl": "blog-website-three-iota.vercel.app",
     "videos": {
       "codeFlow": {
         "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/bloghub-flow.mp4",
+        "url": "/BloSite/1026 (2).mp4",
         "description": "Explains the backend architecture, request lifecycle, routes, controllers, and database interactions."
       },
       "demo": {
         "title": "Complete Project Demo",
-        "url": "/videos/project-demos/bloghub-demo.mp4",
+        "url": "/BloSite/1026.mp4",
         "description": "Demonstrates the website's features and the user journey."
       }
     },
@@ -113,7 +113,6 @@
       {
         "id": "dashboard",
         "image": "/card_details/BlogSite/user.jpg",
-        "image2": "/card_details/BlogSite/HeroImage.jpg",
         "title": "Dashboard",
         "description": "The main dashboard for managing published and draft articles."
       },
@@ -212,7 +211,7 @@
       "Persist state to disk so research can resume."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/langchain_pipliner_agent",
-    "liveUrl": null,
+    "liveUrl": "https://langchainpipelinagent.streamlit.app/",
     "videos": {
       "codeFlow": {
         "title": "Code Architecture and Execution Flow",
@@ -406,7 +405,7 @@
       "Add disclaimers and jurisdiction selection."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/law_memory_agent",
-    "liveUrl": null,
+    "liveUrl": "https://lawmemoryagentwithapp-4nbdue2mce5gnby2q4yso7.streamlit.app/",
     "videos": {
       "codeFlow": {
         "title": "Code Architecture and Execution Flow",
@@ -484,7 +483,7 @@
       "Add a web interface."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/rag_chroma_agent_v2",
-    "liveUrl": null,
+    "liveUrl": "https://ragchromaagentv2.streamlit.app/",
     "videos": {
       "codeFlow": {
         "title": "Code Architecture and Execution Flow",
@@ -582,7 +581,7 @@
       "Stream responses."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/sdk_correction_agent",
-    "liveUrl": null,
+    "liveUrl": "https://sdkcorrectionagent.streamlit.app/",
     "videos": {
       "codeFlow": {
         "title": "Code Architecture and Execution Flow",
@@ -689,7 +688,7 @@
       "Export to Markdown or HTML."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/topic_pipeline_agent",
-    "liveUrl": null,
+    "liveUrl": "https://topicpipelineagent.streamlit.app/",
     "videos": {
       "codeFlow": {
         "title": "Code Architecture and Execution Flow",
@@ -777,7 +776,7 @@
       "Add a web UI."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/langchain_tool_agent",
-    "liveUrl": null,
+    "liveUrl": "https://langchaintoolagent.streamlit.app/",
     "videos": {
       "codeFlow": {
         "title": "Code Architecture and Execution Flow",
@@ -799,88 +798,56 @@
       },
       {
         "id": "architecture",
-        "image": "/images/projects/toolmate/architecture.png",
+        "image": "",
         "title": "Agent Architecture",
         "description": "Tools, agent and model integration."
       }
     ]
   },
   {
-    "id": "pdf-chat-v1",
-    "name": "PDF Chat (Chroma RAG v1)",
-    "projectType": "Retrieval-Augmented Generation (RAG) system (first version)",
-    "description": "PDF Chat v1 is the first version of the PDF question-answering system. It uses HuggingFace embeddings to index a PDF in Chroma and a terminal loop that retrieves similar chunks and streams a Gemini answer.",
+    "id": "agent-functions-flow",
+    "name": "Agent with Function Calling Workflow",
+    "projectType": "AI Agent with Function Calling",
+    "description": "An interactive AI agent application that demonstrates function-calling workflows through a Streamlit web interface. Users can interact with the deployed application to explore the agent's capabilities.",
     "features": [
-      "PDF extraction.",
-      "Text chunking.",
-      "HuggingFace embeddings.",
-      "Chroma knowledge store.",
-      "Similarity retrieval.",
-      "Context prompt.",
-      "Streaming Gemini answers."
+      "AI agent interaction.",
+      "Function-calling workflow.",
+      "Streamlit web interface.",
+      "Interactive user input and responses."
     ],
     "technologies": [
       "Python",
-      "Chroma",
-      "HuggingFace Embeddings",
-      "Google Gemini",
-      "LangChain"
+      "Streamlit",
+      "LLM Function Calling"
     ],
     "workflow": [
-      "system_setup.py loads the source PDF.",
-      "Text is extracted and split into chunks.",
-      "Chunks are embedded with HuggingFace and indexed in Chroma.",
-      "The user asks a question in User_input.py.",
-      "The retriever searches Chroma and returns documents.",
-      "The context prompt is filled with them.",
-      "The prompt is streamed to Gemini and the answer is printed."
+      "The user interacts with the application through the Streamlit interface.",
+      "The application processes the user's input.",
+      "The AI agent handles the request through its function-calling workflow.",
+      "The application displays the resulting response to the user."
     ],
     "modules": [
       {
-        "file": "system_setup.py",
-        "role": "Index setup: extraction, chunking, embeddings and indexing."
-      },
-      {
-        "file": "User_input.py",
-        "role": "Question loop, similarity retrieval, context prompt and Gemini generation."
+        "file": "main.py",
+        "role": "Application entry point for the Streamlit interface and agent workflow."
       }
     ],
-    "challenges": [
-      "Embedding quality affects retrieval accuracy.",
-      "Large PDFs take time to index."
-    ],
-    "futureImprovements": [
-      "Upgrade to v2 features.",
-      "Add re-ranking.",
-      "Add citations."
-    ],
-    "githubUrl": "https://github.com/shahzaibkaramat67-coder/rag_chroma_agent",
-    "liveUrl": null,
+    "challenges": [],
+    "futureImprovements": [],
+    "githubUrl": "https://github.com/shahzaibkaramat67-coder/Agent_with_functions_flow_with_streamlit",
+    "liveUrl": "https://agentwithfunctionsflow.streamlit.app/",
     "videos": {
       "codeFlow": {
         "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/pdf-chat-v1-flow.mp4",
-        "description": "Explains the indexing script and how similarity retrieval fills the context prompt."
+        "url": "",
+        "description": "A walkthrough of the agent's architecture and function-calling execution flow."
       },
       "demo": {
         "title": "Complete Project Demo",
-        "url": "/videos/project-demos/pdf-chat-v1-demo.mp4",
-        "description": "Demonstrates indexing a PDF and querying it."
+        "url": "",
+        "description": "A demonstration of the deployed Agent with Function Calling Workflow."
       }
     },
-    "screenshots": [
-      {
-        "id": "question-loop",
-        "image": "/images/projects/pdf-chat-v1/question-loop.png",
-        "title": "Question Loop",
-        "description": "Asking questions and receiving streamed answers."
-      },
-      {
-        "id": "architecture",
-        "image": "/images/projects/pdf-chat-v1/architecture.png",
-        "title": "RAG Architecture",
-        "description": "Indexing and retrieval around the Chroma store."
-      }
-    ]
+    "screenshots": []
   }
 ]

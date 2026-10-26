@@ -1,5 +1,3 @@
-
-
 [
   {
     "id": "bloghub",
@@ -66,12 +64,11 @@
     "category": "Generative AI"
   },
   {
-    "id": "pdf-chat-v1",
-    "slug": "pdf-chat-v1",
-    "name": "PDF Chat (Chroma RAG v1)",
-    "image": "/images/projects/PDF_Chat_Chroma_RAG_v1.jpg",
-    "shortDescription": "The first RAG version: PDF Q&A using HuggingFace embeddings, Chroma and Gemini.",
+    "id": "agent-functions-flow",
+    "slug": "agent-functions-flow",
+    "name": "Agent with Function Calling Workflow",
+    "image": "/images/projects/Multi_Agent_Orchestration_System.jpg",
+    "shortDescription": "An interactive AI agent application demonstrating function-calling workflows through a Streamlit interface.",
     "category": "Generative AI"
   }
 ]
-
