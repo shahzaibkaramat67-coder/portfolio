@@ -96,29 +96,18 @@
       "Cache analytics queries to speed up the admin dashboard."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/blog-website",
-    "liveUrl": "blog-website-three-iota.vercel.app",
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "/BloSite/1026 (2).mp4",
-        "description": "Explains the backend architecture, request lifecycle, routes, controllers, and database interactions."
-      },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "/BloSite/1026.mp4",
-        "description": "Demonstrates the website's features and the user journey."
-      }
-    },
+    "liveUrl": "https://blog-website-three-iota.vercel.app",
+    "demoVideo": "http://localhost:3000/projects/bloghub",
     "screenshots": [
       {
         "id": "dashboard",
-        "image": "/card_details/BlogSite/user.jpg",
+        "image": "/card_details/BlogSite/images/BlogSite.jpg",
         "title": "Dashboard",
         "description": "The main dashboard for managing published and draft articles."
       },
       {
         "id": "architecture",
-        "image": "/card_details/BlogSite/Blog_Diagram.png",
+        "image": "/card_details/BlogSite/diagram_image/blog-website.png",
         "title": "Backend Architecture",
         "description": "A visual overview of the backend components and their interactions."
       }
@@ -127,7 +116,7 @@
   {
     "id": "multi-agent-system",
     "name": "Multi-Agent Orchestration System",
-    "projectType": "Autonomous deep-research agent (plan, execute, evaluate loop)",
+    "projectType": "Multi-agent orchestration and research system",
     "description": "The Multi-Agent Orchestration System is a command-line research assistant in which several specialized components cooperate to answer hard questions. Instead of asking a language model once, the system runs a loop. An action planner decides what to do next, a tool executor performs web searches and reads pages, a sufficiency evaluator judges whether enough evidence has been gathered, and a final-answer component writes the result. A shared pipeline state object carries the question, gathered results and decisions between stages, and every model call goes through one LLM client with a JSON parser to turn replies into structured data.",
     "features": [
       "Action planner that reads shared state and chooses the next research step.",
@@ -212,29 +201,18 @@
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/langchain_pipliner_agent",
     "liveUrl": "https://langchainpipelinagent.streamlit.app/",
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/multi-agent-system-flow.mp4",
-        "description": "Walks through the research loop, the planner and evaluator prompts, and how state moves between stages."
-      },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "/videos/project-demos/multi-agent-system-demo.mp4",
-        "description": "Shows the agent researching a question end to end from the command line."
-      }
-    },
+    "demoVideo": "",
     "screenshots": [
       {
         "id": "workflow",
-        "image": "/images/projects/multi-agent/workflow.png",
         "title": "Research Workflow",
+        "image": "/card_details/orchestrator_system/images/langchainpipliningeragent.jpg",
         "description": "The loop of planning, executing, evaluating and answering."
       },
       {
         "id": "architecture",
-        "image": "/images/projects/multi-agent/architecture.png",
         "title": "System Architecture",
+        "image": "/card_details/orchestrator_system/diagram_image/langchainpipelinagent.png",
         "description": "How the loop, tools, state and LLM client connect."
       }
     ]
@@ -242,7 +220,7 @@
   {
     "id": "chatmind",
     "name": "ChatMind",
-    "projectType": "Full-stack AI chat application (ChatGPT-style)",
+    "projectType": "AI chat web application",
     "description": "ChatMind is a ChatGPT-style web application where signed-in users hold conversations with an AI assistant and keep their history. The interface is a Next.js home screen composed of a sidebar with history, new chat, search, projects, share popup, profile menu, a more-options menu, a message display area and a message input. Behind it, API routes handle chat, saving the assistant's reply, history queries, signup, login, token refresh and token verification. Users, chats and messages are stored in a database, signup sends a welcome email, and an AI helper module generates the replies.",
     "features": [
       "Secure signup and login with generated access and refresh tokens.",
@@ -328,19 +306,8 @@
       "Add rate limiting and usage quotas."
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/chat_app",
-    "liveUrl": null,
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/chatmind-flow.mp4",
-        "description": "Explains how the UI calls the chat API, how tokens are verified, and how messages are persisted."
-      },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "/videos/project-demos/chatmind-demo.mp4",
-        "description": "Demonstrates signup, starting a chat, searching history and sharing."
-      }
-    },
+    "liveUrl": "",
+    "demoVideo": "",
     "screenshots": [
       {
         "id": "chat-interface",
@@ -359,7 +326,7 @@
   {
     "id": "lawmemory-bot",
     "name": "LawMemory Bot",
-    "projectType": "Conversational chatbot with in-session memory",
+    "projectType": "Conversational AI assistant with memory",
     "description": "LawMemory Bot is a small terminal chatbot built on the Gemini model that remembers the whole conversation. A system prompt, defined in its own file, sets the assistant's role, which the repository name suggests is a legal-information assistant. That prompt seeds a message history; every question and answer is appended to it, and the complete history is sent to the model on each turn so follow-up questions make sense.",
     "features": [
       "System prompt that defines the assistant's role and behavior.",
@@ -406,28 +373,17 @@
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/law_memory_agent",
     "liveUrl": "https://lawmemoryagentwithapp-4nbdue2mce5gnby2q4yso7.streamlit.app/",
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/lawmemory-bot-flow.mp4",
-        "description": "Shows how the system prompt seeds history and how each turn is appended and sent to the model."
-      },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "/videos/project-demos/lawmemory-bot-demo.mp4",
-        "description": "Demonstrates follow-up questions answered using remembered context."
-      }
-    },
+    "demoVideo": "",
     "screenshots": [
       {
         "id": "terminal-chat",
-        "image": "/images/projects/lawmemory-bot/terminal-chat.png",
-        "title": "Terminal Chat",
+        "title": "Legal Dask Agent",
+        "image": "/card_details/Law/images/law.jpg",
         "description": "A multi-turn conversation showing context being remembered."
       },
       {
         "id": "architecture",
-        "image": "/images/projects/lawmemory-bot/architecture.png",
+        "image": "/card_details/Law/diagram_image/law_memory_agent.png",
         "title": "System Architecture",
         "description": "The chat loop, memory and model setup."
       }
@@ -435,7 +391,7 @@
   },
   {
     "id": "pdf-chat-v2",
-    "name": "PDF Chat (Chroma RAG v2)",
+    "name": "PDF Chat v2",
     "projectType": "Retrieval-Augmented Generation (RAG) system",
     "description": "PDF Chat v2 lets a user ask questions about a PDF and receive answers grounded in its content. It has two parts. An indexing script loads the PDF, splits it into chunks, embeds them and persists the vectors into a Chroma index. An interactive assistant takes a question, embeds it, retrieves the most relevant passages from Chroma, builds a context prompt and asks Google Gemini to answer using that context.",
     "features": [
@@ -484,28 +440,17 @@
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/rag_chroma_agent_v2",
     "liveUrl": "https://ragchromaagentv2.streamlit.app/",
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/pdf-chat-v2-flow.mp4",
-        "description": "Explains indexing versus querying, and how retrieved passages build the context prompt."
-      },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "/videos/project-demos/pdf-chat-v2-demo.mp4",
-        "description": "Demonstrates asking questions about a PDF and getting grounded answers."
-      }
-    },
+    "demoVideo": "",
     "screenshots": [
       {
         "id": "indexing",
-        "image": "/images/projects/pdf-chat-v2/indexing.png",
+        "image": "/card_details/Chroma_RAG_V2/images/ragV2.jpg",
         "title": "Document Indexing",
         "description": "The PDF to chunks to vectors pipeline."
       },
       {
         "id": "architecture",
-        "image": "/images/projects/pdf-chat-v2/architecture.png",
+        "image": "/card_details/Chroma_RAG_V2/diagram_image/rag_chroma_agent_v2.png",
         "title": "RAG Architecture",
         "description": "Indexing and question-answering paths around Chroma."
       }
@@ -514,7 +459,7 @@
   {
     "id": "sdk-tool-agent",
     "name": "SDK Tool-Calling Research Agent",
-    "projectType": "Framework-free tool-calling AI agent",
+    "projectType": "SDK-based tool-calling research agent",
     "description": "This project is a research agent written directly against an OpenAI-compatible SDK, without an agent framework. It implements its own agent loop, tool registry, tool schemas and conversation memory, which exposes how native function calling works. The agent can search the web with DuckDuckGo and fetch and extract text from source pages.",
     "features": [
       "Hand-built agent loop with native tool calling.",
@@ -582,28 +527,17 @@
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/sdk_correction_agent",
     "liveUrl": "https://sdkcorrectionagent.streamlit.app/",
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/sdk-tool-agent-flow.mp4",
-        "description": "Explains tool schemas, the agent loop and how tool results are written to memory."
-      },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "/videos/project-demos/sdk-tool-agent-demo.mp4",
-        "description": "Demonstrates the agent searching and reading sources to answer a question."
-      }
-    },
+    "demoVideo": "",
     "screenshots": [
       {
         "id": "agent-run",
-        "image": "/images/projects/sdk-tool-agent/agent-run.png",
         "title": "Agent Run",
+        "image": "/card_details/Tool_calling_agent/images/httpssdkcorrectionagent.streamlit.app.jpg",
         "description": "The agent choosing tools and answering a question."
       },
       {
         "id": "architecture",
-        "image": "/images/projects/sdk-tool-agent/architecture.png",
+        "image": "/card_details/Tool_calling_agent/diagram_image/SDK_correction_agent.png",
         "title": "Agent Architecture",
         "description": "Loop, memory, tools and model client relationships."
       }
@@ -612,7 +546,7 @@
   {
     "id": "articleforge",
     "name": "ArticleForge",
-    "projectType": "Multi-stage LLM content pipeline (prompt chaining)",
+    "projectType": "Multi-stage AI article-writing pipeline",
     "description": "ArticleForge turns a single topic into a finished article through four stages that each do one job. An outline creator structures the piece, a content analyzer checks drafts, an article writer produces the text and an article editor polishes it. Each stage builds its prompt from a shared prompt-template module and sends it through one LLM client to a configured API.",
     "features": [
       "Interactive CLI that accepts a topic.",
@@ -689,28 +623,17 @@
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/topic_pipeline_agent",
     "liveUrl": "https://topicpipelineagent.streamlit.app/",
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/articleforge-flow.mp4",
-        "description": "Shows how each stage builds its prompt, calls the model and passes output forward."
-      },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "/videos/project-demos/articleforge-demo.mp4",
-        "description": "Demonstrates entering a topic and receiving a polished article."
-      }
-    },
+    "demoVideo": "",
     "screenshots": [
       {
         "id": "final-article",
-        "image": "/images/projects/articleforge/final-article.png",
+        "image": "/card_details/Multi_Stage_AI_Writing_Pipeline/images/httpstopicpipelineagent.streamlit.app.jpg",
         "title": "Final Article Output",
         "description": "A finished article printed in the terminal."
       },
       {
         "id": "architecture",
-        "image": "/images/projects/articleforge/architecture.png",
+        "image": "/card_details/Multi_Stage_AI_Writing_Pipeline/diagram_image/topic_pipeline_agent.png",
         "title": "Pipeline Architecture",
         "description": "The four stages and shared prompt and model layers."
       }
@@ -719,7 +642,7 @@
   {
     "id": "toolmate",
     "name": "ToolMate",
-    "projectType": "LangChain tool-using question-answering agent",
+    "projectType": "LangChain tool-using AI agent",
     "description": "ToolMate is a question-answering agent that decides when to use tools. It has three: a DuckDuckGo web search tool, a webpage reader and a calculator. A model factory configures a chat model that calls OpenRouter, the agent streams the completion to the user, and an answer formatter prepares the final output.",
     "features": [
       "Web search with DuckDuckGo.",
@@ -777,28 +700,17 @@
     ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/langchain_tool_agent",
     "liveUrl": "https://langchaintoolagent.streamlit.app/",
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "/videos/code-flow/toolmate-flow.mp4",
-        "description": "Explains tool registration, model creation and the streaming answer path."
-      },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "/videos/project-demos/toolmate-demo.mp4",
-        "description": "Demonstrates questions needing search and calculation."
-      }
-    },
+    "demoVideo": "",
     "screenshots": [
       {
         "id": "streaming-answer",
-        "image": "/images/projects/toolmate/streaming-answer.png",
+        "image": "/card_details/_LangChain_Tool_Using_Agent/images/httpslangchaintoolagent.streamlit.app.jpg",
         "title": "Streaming Answer",
         "description": "The agent streaming a tool-assisted answer."
       },
       {
         "id": "architecture",
-        "image": "",
+        "image": "/card_details/_LangChain_Tool_Using_Agent/diagram_image/langchain_tool_agent.png",
         "title": "Agent Architecture",
         "description": "Tools, agent and model integration."
       }
@@ -807,47 +719,79 @@
   {
     "id": "agent-functions-flow",
     "name": "Agent with Function Calling Workflow",
-    "projectType": "AI Agent with Function Calling",
-    "description": "An interactive AI agent application that demonstrates function-calling workflows through a Streamlit web interface. Users can interact with the deployed application to explore the agent's capabilities.",
+    "projectType": "Function-calling AI agent with a Streamlit interface",
+    "description": "An AI agent project organized around an agent entry point, model configuration, function tools, evaluation, and final-result handling. The repository also contains search tools and a file-loading module, indicating a workflow that can combine model-driven function calls with supporting tools.",
     "features": [
-      "AI agent interaction.",
-      "Function-calling workflow.",
-      "Streamlit web interface.",
-      "Interactive user input and responses."
+      "Agent entry point and model configuration.",
+      "Function-tool modules for evaluation and final-result handling.",
+      "Search tools organized in a dedicated tools package.",
+      "File-loading utility.",
+      "Separate modules for agent behavior and tool execution."
     ],
     "technologies": [
       "Python",
-      "Streamlit",
-      "LLM Function Calling"
+      "LLM API",
+      "Function Calling"
     ],
     "workflow": [
-      "The user interacts with the application through the Streamlit interface.",
-      "The application processes the user's input.",
-      "The AI agent handles the request through its function-calling workflow.",
-      "The application displays the resulting response to the user."
+      "The application starts from the agent entry point.",
+      "The model configuration supplies the model client.",
+      "The agent uses function-tool modules to perform supported operations.",
+      "Supporting tools provide search and file-loading functionality.",
+      "Evaluation and final-result modules help process the agent output."
     ],
     "modules": [
       {
-        "file": "main.py",
-        "role": "Application entry point for the Streamlit interface and agent workflow."
+        "file": "Agentic_Agent/main.py",
+        "role": "Agent entry point and core workflow."
+      },
+      {
+        "file": "Agentic_Agent/model.py",
+        "role": "Model client configuration."
+      },
+      {
+        "file": "function_tool/evaluation.py",
+        "role": "Evaluation-related function tool."
+      },
+      {
+        "file": "function_tool/final_result.py",
+        "role": "Final-result handling."
+      },
+      {
+        "file": "Tools/search/",
+        "role": "Search tool modules."
+      },
+      {
+        "file": "fileLoder/fileLoder.py",
+        "role": "File-loading utility."
       }
     ],
-    "challenges": [],
-    "futureImprovements": [],
+    "challenges": [
+      "Keeping tool definitions and tool execution behavior consistent.",
+      "Handling incomplete or invalid tool outputs.",
+      "Evaluating agent output before returning a final result."
+    ],
+    "futureImprovements": [
+      "Add clearer error handling for tool failures.",
+      "Add visible execution traces for each function call.",
+      "Add tests for tool schemas and evaluation behavior."
+    ],
     "githubUrl": "https://github.com/shahzaibkaramat67-coder/Agent_with_functions_flow_with_streamlit",
     "liveUrl": "https://agentwithfunctionsflow.streamlit.app/",
-    "videos": {
-      "codeFlow": {
-        "title": "Code Architecture and Execution Flow",
-        "url": "",
-        "description": "A walkthrough of the agent's architecture and function-calling execution flow."
+    "demoVideo": "",
+    "screenshots": [
+      {
+        "id": "dashboard",
+        "image": "/card_details/Agent with Function Calling Workflow/images/httpsagentwithfunctionsflow.streamlit.app.jpg",
+        "title": "Dashboard",
+        "description": "The main dashboard for managing published and draft articles."
       },
-      "demo": {
-        "title": "Complete Project Demo",
-        "url": "",
-        "description": "A demonstration of the deployed Agent with Function Calling Workflow."
+      {
+        "id": "architecture",
+        "image": "/card_details/Agent with Function Calling Workflow/diagram_image/httpsagentwithfunctionsflow.png",
+        "title": "Backend Architecture",
+        "description": "A visual overview of the backend components and their interactions."
       }
-    },
-    "screenshots": []
+    ]
   }
 ]

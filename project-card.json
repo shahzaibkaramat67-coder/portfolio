@@ -10,7 +10,7 @@
   {
     "id": "multi-agent-system",
     "slug": "multi-agent-system",
-    "name": "Multi-Agent Orchestration System",
+    "name": "LangChain Pipeline Agent.",
     "image": "/images/projects/Multi_Agent_Orchestration_System.jpg",
     "shortDescription": "An AI agent system that coordinates specialized agents to research, plan, and solve tasks.",
     "category": "Generative AI"

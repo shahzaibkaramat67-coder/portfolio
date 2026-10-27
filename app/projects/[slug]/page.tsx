@@ -1,21 +1,29 @@
-import { promises } from "dns"
 
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import ProjectDetailContent from "./ProjectDetailContent";
+import ProjectDetailView from "./ProjectDetailContent";
+import projects from "./../../../Project_Details.json";
 
-export default function ProjectDetail({ params }: {
+type Params = {
     params: Promise<{ slug: string }>;
-}) {
+};
 
+async function ProjectDetails({ params }: Params) {
+    const { slug } = await params;
 
+    const project = projects.find((item) => item.id === slug);
 
+    if (!project) {
+        notFound();
+    }
 
+    return <ProjectDetailView project={project} />;
+}
 
+export default function ProjectDetail({ params }: Params) {
     return (
-
         <Suspense fallback={<p>Loading project...</p>}>
-            <ProjectDetailContent params={params} />
+            <ProjectDetails params={params} />
         </Suspense>
-    )
+    );
 }
